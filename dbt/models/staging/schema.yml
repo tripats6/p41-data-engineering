@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: stg_trips
+    description: "Staging view of Divvy trip records for the selected ingestion months. Grain: one row per trip."
+    columns:
+      - name: ride_id
+        description: "Unique identifier for a bike trip."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: rideable_type
+        description: "Type of bike used for the trip."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['classic_bike', 'electric_bike']
+
+      - name: started_at
+        description: "Timestamp when the trip started."
+        data_tests:
+          - not_null
+
+      - name: ended_at
+        description: "Timestamp when the trip ended."
+        data_tests:
+          - not_null
+
+      - name: member_casual
+        description: "Rider membership type: member or casual."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['member', 'casual']
+
+
+  - name: stg_stations
+    description: "Staging view of the current Divvy GBFS station information. Grain: one row per station."
+    columns:
+      - name: station_id
+        description: "Unique identifier for a Divvy station."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: station_name
+        description: "Human-readable station name."
+        data_tests:
+          - not_null
+
+      - name: latitude
+        description: "Station latitude in decimal degrees."
+        data_tests:
+          - not_null
+
+      - name: longitude
+        description: "Station longitude in decimal degrees."
+        data_tests:
+          - not_null
+
+      - name: capacity
+        description: "Reported station capacity."
+        data_tests:
+          - not_null

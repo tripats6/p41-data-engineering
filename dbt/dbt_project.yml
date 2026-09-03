@@ -1,0 +1,11 @@
+name: p41_data_engineering
+version: '1.0.0'
+config-version: 2
+
+profile: p41_data_engineering
+
+model-paths: ["models"]
+
+models:
+  p41_data_engineering:
+    +materialized: view
