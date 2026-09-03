@@ -10,7 +10,7 @@ The design prioritizes correctness, reproducibility, explicit data-quality decis
 
 Tech Stack
 
-Python 3.13
+Python 3.11+
 
 DuckDB 1.5.5
 
@@ -226,7 +226,6 @@ Potential improvements would include:
 
 Developing a more robust historical station reconciliation strategy.
 
-Preserving GBFS snapshot metadata alongside the flattened station records.
 
 Adding incremental ingestion for larger historical periods.
 
