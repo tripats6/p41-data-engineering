@@ -1,0 +1,98 @@
+version: 2
+
+models:
+  - name: mart_station_demand
+    description: "Station demand mart showing trip counts by starting station and rider type. Grain: one row per start station and rider type."
+    columns:
+      - name: station_id
+        description: "Historical station identifier recorded on the trip."
+        data_tests:
+          - not_null
+
+      - name: station_name
+        description: "Historical station name recorded on the trip."
+        data_tests:
+          - not_null
+
+      - name: member_casual
+        description: "Rider membership type."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['member', 'casual']
+
+      - name: trip_count
+        description: "Number of trips originating from the station for the rider type."
+        data_tests:
+          - not_null
+
+  - name: mart_usage_patterns
+    description: "Usage-pattern mart showing trip volume and average duration by hour, day of week, and rider type. Grain: one row per hour, day of week, and rider type."
+    columns:
+      - name: ride_hour
+        description: "Hour of day when the trip started, from 0 through 23."
+        data_tests:
+          - not_null
+
+      - name: day_of_week
+        description: "Numeric day-of-week value for the trip start."
+        data_tests:
+          - not_null
+
+      - name: day_name
+        description: "Name of the day on which the trip started."
+        data_tests:
+          - not_null
+
+      - name: member_casual
+        description: "Rider membership type."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['member', 'casual']
+
+      - name: trip_count
+        description: "Number of trips for the hour, day of week, and rider type combination."
+        data_tests:
+          - not_null
+
+      - name: avg_ride_duration_seconds
+        description: "Average trip duration in seconds for the hour, day of week, and rider type combination."
+        data_tests:
+          - not_null
+
+  - name: mart_rideable_type
+    description: "Rideable-type mart showing trip volume and duration metrics by bike type and rider type. Grain: one row per rideable type and rider type."
+    columns:
+      - name: rideable_type
+        description: "Type of bike used for the trip."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['classic_bike', 'electric_bike']
+
+      - name: member_casual
+        description: "Rider membership type."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['member', 'casual']
+
+      - name: trip_count
+        description: "Number of trips for the rideable type and rider type combination."
+        data_tests:
+          - not_null
+
+      - name: avg_ride_duration_seconds
+        description: "Average trip duration in seconds for the rideable type and rider type combination."
+        data_tests:
+          - not_null
+
+      - name: median_ride_duration_seconds
+        description: "Median trip duration in seconds for the rideable type and rider type combination."
+        data_tests:
+          - not_null
