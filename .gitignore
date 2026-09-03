@@ -15,3 +15,7 @@ dbt/logs/
 dbt/dbt_packages/
 
 .DS_Store
+logs/
+dbt/.user.yml
+
+data/*.json
