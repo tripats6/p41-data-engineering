@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: fct_trips
+    description: "Trip-level fact table for the selected Divvy trip data. Grain: one row per ride."
+    columns:
+      - name: ride_id
+        description: "Unique identifier for the trip and primary key of the fact table."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: rideable_type
+        description: "Type of bike used for the trip."
+        data_tests:
+          - not_null
+
+      - name: start_date
+        description: "Calendar date on which the trip started."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day
+
+      - name: started_at
+        description: "Timestamp when the trip started."
+        data_tests:
+          - not_null
+
+      - name: ended_at
+        description: "Timestamp when the trip ended."
+        data_tests:
+          - not_null
+
+      - name: member_casual
+        description: "Rider membership type."
+        data_tests:
+          - not_null
+
+      - name: ride_duration_seconds
+        description: "Trip duration in seconds calculated from the start and end timestamps."
+        data_tests:
+          - not_null
