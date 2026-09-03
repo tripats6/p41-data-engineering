@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: dim_station
+    description: "Current Divvy station dimension. Grain: one row per station."
+    columns:
+      - name: station_id
+        description: "Unique identifier for the station and primary key of the dimension."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: station_name
+        description: "Current human-readable station name."
+        data_tests:
+          - not_null
+
+      - name: latitude
+        description: "Station latitude in decimal degrees."
+        data_tests:
+          - not_null
+
+      - name: longitude
+        description: "Station longitude in decimal degrees."
+        data_tests:
+          - not_null
+
+      - name: capacity
+        description: "Reported station capacity."
+        data_tests:
+          - not_null
+
+
+  - name: dim_date
+    description: "Calendar date dimension derived from the dates represented in the trip data. Grain: one row per calendar date."
+    columns:
+      - name: date_day
+        description: "Calendar date and primary key of the dimension."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: year
+        description: "Calendar year."
+
+      - name: month
+        description: "Calendar month number."
+
+      - name: month_name
+        description: "Calendar month name."
+
+      - name: day_of_month
+        description: "Day number within the month."
+
+      - name: day_of_week
+        description: "Numeric day-of-week value."
+
+      - name: day_name
+        description: "Calendar day name."
+
+      - name: week_of_year
+        description: "Calendar week number."
+
+      - name: quarter
+        description: "Calendar quarter number."
