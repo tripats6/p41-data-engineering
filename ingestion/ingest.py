@@ -113,7 +113,10 @@ def load_station_data(con, station_path: Path) -> None:
         """
         CREATE OR REPLACE TABLE raw.stations AS
         SELECT
-            station.*
+            station.*,
+            last_updated,
+            ttl,
+            version
         FROM raw.stations,
         UNNEST(data.stations) AS t(station)
         """
